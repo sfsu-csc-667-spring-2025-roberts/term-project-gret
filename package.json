@@ -7,13 +7,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon --exec ts-node src/server/index.ts",
     "start": "ts-node src/server/index.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:create": "node-pg-migrate create -j ts --",
+    "db:migrate": "ts-node node_modules/node-pg-migrate/bin/node-pg-migrate.js up -j ts",
+    "db:rollback": "ts-node node_modules/node-pg-migrate/bin/node-pg-migrate.js down -j ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
     "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.10",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
@@ -28,7 +33,9 @@
     "ejs": "^3.1.10",
     "express": "^5.0.1",
     "http-errors": "^2.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-pg-migrate": "^7.9.1",
+    "pg": "^8.14.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
